@@ -109,7 +109,7 @@ footer{color:var(--muted);font-size:.8rem;padding:30px 0 50px}
 <main class="wrap">
   <section class="hero">
     <h1 id="title">Đề 1</h1>
-    <p>50 câu: 30 câu Phase 1 (AICB) và 20 câu Phase 2 (Computer Vision &amp; Robotics). Bấm vào một đáp án để xem ngay đáp án đúng, câu hỏi thuộc ngày nào, kiến thức nào, vì sao đúng và vì sao các phương án còn lại sai. Mỗi đề dùng một bộ câu riêng, không trùng nhau.</p>
+    <p>50 câu: 30 câu Phase 1 (AICB) và 20 câu Phase 2 (Computer Vision &amp; Robotics). Các câu được xáo trộn, không theo thứ tự buổi học. Bấm vào một đáp án để xem đáp án đúng, câu đó thuộc phần nào (phase, ngày, kiến thức), vì sao đúng và vì sao các phương án còn lại sai. Mỗi đề dùng một bộ câu riêng, không trùng nhau.</p>
     <div class="stats">
       <div class="stat"><b id="sDone">0/50</b><span>Đã làm</span></div>
       <div class="stat"><b id="sRight">0</b><span>Đúng</span></div>
@@ -121,8 +121,6 @@ footer{color:var(--muted);font-size:.8rem;padding:30px 0 50px}
       <button class="chip" data-f="all" aria-pressed="true">Tất cả</button>
       <button class="chip" data-f="todo" aria-pressed="false">Chưa làm</button>
       <button class="chip" data-f="wrong" aria-pressed="false">Câu sai</button>
-      <button class="chip" data-f="p1" aria-pressed="false">Chỉ Phase 1</button>
-      <button class="chip" data-f="p2" aria-pressed="false">Chỉ Phase 2</button>
       <button class="chip reset" id="reset">Làm lại đề này</button>
     </div>
   </section>
@@ -136,10 +134,11 @@ footer{color:var(--muted);font-size:.8rem;padding:30px 0 50px}
 </main>
 <script>
 const EXAMS=/*__DATA__*/null;
-const KEY="finalexam-nhatthang-v1";
+const KEY="finalexam-nhatthang-v2";
 const L="ABCD";
 let st={exam:0,ans:{},f:"all"};
 try{const s=JSON.parse(localStorage.getItem(KEY)||"null");if(s&&s.ans)st=Object.assign(st,s);}catch(e){}
+if(!["all","todo","wrong"].includes(st.f))st.f="all";
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 function ans(ei){return st.ans[ei]||(st.ans[ei]={});}
@@ -164,22 +163,16 @@ function qHTML(q,i,ei){
       <div><b style="font-size:.85rem">Vì sao các đáp án khác sai</b><ul class="others">${others}</ul></div>
     </div>`;
   }
-  return `<article class="q" id="q${i}"><div class="meta"><span class="num">Câu ${i+1}</span><span class="tag p${q.p}">P${q.p} · D${q.d}</span><span>${esc(q.day)}</span></div>
+  return `<article class="q" id="q${i}"><div class="meta"><span class="num">Câu ${i+1}</span></div>
     <h3>${esc(q.q)}</h3><div class="opts">${opts}</div>${ex}</article>`;
 }
 function render(){
   const ei=st.exam,E=EXAMS[ei],a=ans(ei);
   document.getElementById("title").textContent=`Đề ${ei+1}`;
   document.querySelectorAll(".chip[data-f]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.f===st.f));
-  let html="",shown=0;
-  for(const p of [1,2]){
-    const idx=E.map((q,i)=>i).filter(i=>E[i].p===p).filter(i=>{
-      const c=a[i];if(st.f==="todo")return c===undefined;if(st.f==="wrong")return c!==undefined&&c!==E[i].a;
-      if(st.f==="p1")return p===1;if(st.f==="p2")return p===2;return true;});
-    if(!idx.length)continue;shown+=idx.length;
-    html+=`<div class="sec"><span class="pill p${p}">Phase ${p}</span><h2>${p===1?"AICB: AI Agent & hệ thống":"Computer Vision & Robotics"}</h2><span class="m">${E.filter(q=>q.p===p).length} câu</span></div>`;
-    html+=idx.map(i=>qHTML(E[i],i,ei)).join("");
-  }
+  const idx=E.map((q,i)=>i).filter(i=>{const c=a[i];
+    if(st.f==="todo")return c===undefined;if(st.f==="wrong")return c!==undefined&&c!==E[i].a;return true;});
+  let html=idx.map(i=>qHTML(E[i],i,ei)).join(""),shown=idx.length;
   if(!shown)html=`<p class="empty">Không có câu nào trong mục này.</p>`;
   document.getElementById("list").innerHTML=html;
   stats();renderTabs();

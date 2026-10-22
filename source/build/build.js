@@ -20,8 +20,9 @@ for(const p of [1,2]){
   seq.forEach((q,k)=>exams[k%5].push(q));
 }
 // balanced answer positions per exam
-const out=exams.map((qs,ei)=>{
-  qs.sort((a,b)=>a.p-b.p||a.d-b.d);
+const out=exams.map((qs0,ei)=>{
+  let qs=qs0;
+  qs=shuf(qs);
   let pos=[];while(pos.length<qs.length)pos=pos.concat(shuf([0,1,2,3]));
   return qs.map((q,i)=>{
     const wrongIdx=shuf([0,1,2,3].filter(j=>j!==q.a));

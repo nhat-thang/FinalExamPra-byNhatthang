@@ -9,14 +9,14 @@ Tổng 250 câu, không câu nào lặp lại giữa các đề.
 
 ## Cách dùng
 
-Mở `index.html` bằng trình duyệt (không cần cài gì). Bấm vào một đáp án để xem ngay:
+Mở `index.html` bằng trình duyệt (không cần cài gì). Câu hỏi trong mỗi đề được xáo trộn, không ghi tên bài trước câu. Bấm vào một đáp án để xem ngay:
 
 - đáp án đúng,
 - câu hỏi thuộc phase nào, ngày nào, kiến thức nào,
 - vì sao đáp án đó đúng,
 - vì sao từng phương án còn lại sai.
 
-Có bộ lọc *Chưa làm / Câu sai / Phase 1 / Phase 2*, điểm theo từng đề và bảng điểm theo ngày khi làm xong. Tiến độ được lưu trong trình duyệt.
+Có bộ lọc *Chưa làm / Câu sai*, điểm theo từng đề và bảng điểm theo ngày khi làm xong. Tiến độ được lưu trong trình duyệt.
 
 ## Ghi chú về đáp án
 
