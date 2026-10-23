@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Đề Trọng Tâm</title>
+<meta name="description" content="5 đề trắc nghiệm, mỗi đề 50 câu: 30 câu Phase 1 (AICB) và 20 câu Phase 2 (Computer Vision & Robotics), có đáp án và giải thích từng phương án.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F5F1; --surface:#FFFFFF; --surface-2:#F0EFEA; --ink:#1C1E22; --muted:#5E6470; --line:#E1DFD8;
+  --accent:#2F5BD3; --accent-ink:#FFFFFF; --p1:#2F5BD3; --p2:#0F8A72;
+  --ok:#1E7A46; --ok-bg:#E6F4EC; --bad:#B4312A; --bad-bg:#FBEAE8; --warn-bg:#FFF6DF;
+  --f-sans:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif; --f-mono:"JetBrains Mono",ui-monospace,monospace;
+  --r:12px; --shadow:0 1px 2px rgba(20,20,30,.05),0 4px 14px rgba(20,20,30,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121417; --surface:#1A1D22; --surface-2:#22262C; --ink:#E9EAEC; --muted:#9CA3AF; --line:#2E333B;
+    --accent:#7A9BFF; --accent-ink:#0E1116; --p1:#7A9BFF; --p2:#4CC9A8;
+    --ok:#5ED08F; --ok-bg:#16301F; --bad:#F2857C; --bad-bg:#3A1A18; --warn-bg:#2E2814;
+    --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121417; --surface:#1A1D22; --surface-2:#22262C; --ink:#E9EAEC; --muted:#9CA3AF; --line:#2E333B;
+  --accent:#7A9BFF; --accent-ink:#0E1116; --p1:#7A9BFF; --p2:#4CC9A8;
+  --ok:#5ED08F; --ok-bg:#16301F; --bad:#F2857C; --bad-bg:#3A1A18; --warn-bg:#2E2814;
+  --shadow:none;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-sans);font-size:16px;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:12px;padding:12px 0;flex-wrap:wrap}
+.brand{font-weight:700;letter-spacing:-.01em;margin-right:auto}
+.brand small{display:block;font-weight:500;color:var(--muted);font-size:.78rem}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{font:600 .9rem var(--f-sans);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:7px 12px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.tab .sc{font:500 .72rem var(--f-mono);opacity:.8;margin-left:6px}
+.iconbtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;width:36px;height:36px;cursor:pointer;font-size:1rem}
+.hero{padding:28px 0 8px}
+.hero h1{font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.15;margin:0 0 8px;letter-spacing:-.02em}
+.hero p{margin:0;color:var(--muted);max-width:62ch}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:20px 0 8px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font:600 1.35rem var(--f-mono)}
+.stat span{color:var(--muted);font-size:.82rem}
+.prog{height:6px;background:var(--surface-2);border-radius:99px;overflow:hidden;margin:8px 0 4px}
+.prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 6px;align-items:center}
+.chip{font:500 .85rem var(--f-sans);border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 12px;border-radius:999px;cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,var(--surface))}
+.chip.reset{margin-left:auto;color:var(--bad)}
+.sec{margin:30px 0 10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sec h2{margin:0;font-size:1.15rem}
+.sec .pill{font:600 .72rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:6px;color:#fff}
+.sec .pill.p1{background:var(--p1)} .sec .pill.p2{background:var(--p2)}
+:root[data-theme="dark"] .sec .pill,:root:not([data-theme="light"]) .sec .pill{color:var(--accent-ink)}
+.sec span.m{color:var(--muted);font-size:.85rem}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin:12px 0;box-shadow:var(--shadow)}
+.q .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.8rem;color:var(--muted);margin-bottom:8px}
+.q .num{font:600 .8rem var(--f-mono);color:var(--ink)}
+.q .tag{font:600 .72rem var(--f-mono);padding:2px 7px;border-radius:6px;border:1px solid var(--line)}
+.q .tag.p1{color:var(--p1);border-color:color-mix(in srgb,var(--p1) 40%,transparent)}
+.q .tag.p2{color:var(--p2);border-color:color-mix(in srgb,var(--p2) 40%,transparent)}
+.q h3{font-size:1.02rem;font-weight:600;margin:0 0 12px;line-height:1.5}
+.opts{display:grid;gap:8px}
+.opt{display:flex;gap:10px;align-items:flex-start;text-align:left;width:100%;font:inherit;color:inherit;background:var(--surface-2);border:1.5px solid transparent;border-radius:10px;padding:10px 12px;cursor:pointer;line-height:1.45}
+.opt:hover:not([disabled]){border-color:var(--line)}
+.opt .k{font:600 .85rem var(--f-mono);min-width:1.4em;color:var(--muted)}
+.opt[disabled]{cursor:default}
+.opt.right{background:var(--ok-bg);border-color:var(--ok)}
+.opt.right .k{color:var(--ok)}
+.opt.wrong{background:var(--bad-bg);border-color:var(--bad)}
+.opt.wrong .k{color:var(--bad)}
+.opt .mark{margin-left:auto;font-weight:700;padding-left:8px}
+.ex{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px;display:grid;gap:10px;font-size:.93rem}
+.verdict{font-weight:700}
+.verdict.ok{color:var(--ok)} .verdict.no{color:var(--bad)}
+.src{font-size:.85rem;color:var(--muted)}
+.star{font-size:.85rem;font-weight:600;color:var(--warn,#b7791f)}
+.src b{color:var(--ink);font-weight:600}
+.why{background:var(--warn-bg);border-radius:8px;padding:10px 12px}
+.why b{display:block;font:600 .72rem var(--f-mono);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;color:var(--muted)}
+.others{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.others li{display:grid;grid-template-columns:auto 1fr;gap:8px}
+.others .k{font:600 .82rem var(--f-mono);color:var(--bad)}
+.empty{color:var(--muted);text-align:center;padding:30px 0}
+.done{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin:24px 0;display:none}
+.done.show{display:block}
+.done h3{margin:0 0 6px}
+.done table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:10px}
+.done td,.done th{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left}
+.done td:last-child,.done th:last-child{text-align:right;font-family:var(--f-mono)}
+footer{color:var(--muted);font-size:.8rem;padding:30px 0 50px}
+@media (max-width:560px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.q{padding:14px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap bar">
+  <div class="brand">Đề trọng tâm · dễ–trung bình<small>AICB Phase 1 · CV &amp; Robotics Phase 2</small></div>
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Chọn đề"></nav>
+  <button class="iconbtn" id="theme" title="Đổi sáng/tối" aria-label="Đổi sáng/tối">◐</button>
+</div></header>
+<main class="wrap">
+  <section class="hero">
+    <h1 id="title">Đề 1</h1>
+    <p>50 câu: 30 câu Phase 1 (AICB) và 20 câu Phase 2 (Computer Vision &amp; Robotics). Mức dễ–trung bình, tập trung vào kiến thức có khả năng ra thi cao nhất. Mỗi kiến thức trọng tâm xuất hiện ở 3 trong 5 đề, mỗi lần được hỏi theo một cách khác. Câu hỏi được xáo trộn; bấm một đáp án để xem đáp án đúng, câu thuộc phần nào, vì sao đúng và vì sao các phương án khác sai.</p>
+    <div class="stats">
+      <div class="stat"><b id="sDone">0/50</b><span>Đã làm</span></div>
+      <div class="stat"><b id="sRight">0</b><span>Đúng</span></div>
+      <div class="stat"><b id="sWrong">0</b><span>Sai</span></div>
+      <div class="stat"><b id="sPct">–</b><span>Tỉ lệ đúng</span></div>
+    </div>
+    <div class="prog"><i id="bar"></i></div>
+    <div class="tools" role="group" aria-label="Lọc câu hỏi">
+      <button class="chip" data-f="all" aria-pressed="true">Tất cả</button>
+      <button class="chip" data-f="todo" aria-pressed="false">Chưa làm</button>
+      <button class="chip" data-f="wrong" aria-pressed="false">Câu sai</button>
+      <button class="chip" data-f="core" aria-pressed="false">Câu trọng tâm đã làm</button>
+      <button class="chip reset" id="reset">Làm lại đề này</button>
+    </div>
+  </section>
+  <div id="list"></div>
+  <section class="done" id="done">
+    <h3 id="doneTitle">Kết quả</h3>
+    <div id="doneText" class="src"></div>
+    <table id="doneTable"></table>
+  </section>
+  <footer>Câu hỏi soạn từ slide AICB Phase 1 (Day 2, 3, 4, 7, 8, 9–14) và Track 4 Computer Vision &amp; Robotics (Day 1–12, không có Day 3). Tiến độ được lưu trên trình duyệt này.</footer>
+</main>
+<script>
+const EXAMS=/*__DATA__*/null;
+const KEY="finalexam-nhatthang-trongtam-v1";
+const L="ABCD";
+let st={exam:0,ans:{},f:"all"};
+try{const s=JSON.parse(localStorage.getItem(KEY)||"null");if(s&&s.ans)st=Object.assign(st,s);}catch(e){}
+if(!["all","todo","wrong"].includes(st.f))st.f="all";
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function ans(ei){return st.ans[ei]||(st.ans[ei]={});}
+function score(ei){const a=ans(ei),E=EXAMS[ei];let r=0,n=0;for(const k in a){n++;if(a[k]===E[k].a)r++;}return{r,n,w:n-r};}
+function renderTabs(){
+  document.getElementById("tabs").innerHTML=EXAMS.map((e,i)=>{const s=score(i);
+    return `<button class="tab" role="tab" aria-selected="${i===st.exam}" data-e="${i}">Đề ${i+1}<span class="sc">${s.n?s.r+"/"+s.n:""}</span></button>`}).join("");
+}
+function qHTML(q,i,ei){
+  const a=ans(ei),chosen=a[i],done=chosen!==undefined;
+  const opts=q.o.map((t,j)=>{let cls="",mark="";
+    if(done){if(j===q.a){cls="right";mark="✓";}else if(j===chosen){cls="wrong";mark="✗";}}
+    return `<button class="opt ${cls}" data-q="${i}" data-o="${j}" ${done?"disabled":""}><span class="k">${L[j]}</span><span>${esc(t)}</span><span class="mark">${mark}</span></button>`}).join("");
+  let ex="";
+  if(done){
+    const ok=chosen===q.a;
+    const others=q.o.map((t,j)=>j===q.a?"":`<li><span class="k">${L[j]}</span><span><b>${esc(t)}</b>: ${esc(q.w[j])}</span></li>`).join("");
+    ex=`<div class="ex">
+      <div class="verdict ${ok?"ok":"no"}">${ok?"Chính xác!":"Chưa đúng."} Đáp án đúng: ${L[q.a]}. ${esc(q.o[q.a])}</div>
+      ${q.h?`<div class="star">★ Kiến thức trọng tâm: xuất hiện ở ${q.h.map(x=>"Đề "+x).join(", ")} với cách hỏi khác</div>`:""}
+      <div class="src">Thuộc <b>Phase ${q.p} · Day ${q.d}: ${esc(q.day)}</b> · Kiến thức: <b>${esc(q.t)}</b></div>
+      <div class="why"><b>Vì sao đúng</b>${esc(q.e)}</div>
+      <div><b style="font-size:.85rem">Vì sao các đáp án khác sai</b><ul class="others">${others}</ul></div>
+    </div>`;
+  }
+  return `<article class="q" id="q${i}"><div class="meta"><span class="num">Câu ${i+1}</span></div>
+    <h3>${esc(q.q)}</h3><div class="opts">${opts}</div>${ex}</article>`;
+}
+function render(){
+  const ei=st.exam,E=EXAMS[ei],a=ans(ei);
+  document.getElementById("title").textContent=`Đề ${ei+1}`;
+  document.querySelectorAll(".chip[data-f]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.f===st.f));
+  const idx=E.map((q,i)=>i).filter(i=>{const c=a[i];
+    if(st.f==="todo")return c===undefined;if(st.f==="wrong")return c!==undefined&&c!==E[i].a;if(st.f==="core")return c!==undefined&&E[i].h;return true;});
+  let html=idx.map(i=>qHTML(E[i],i,ei)).join(""),shown=idx.length;
+  if(!shown)html=`<p class="empty">Không có câu nào trong mục này.</p>`;
+  document.getElementById("list").innerHTML=html;
+  stats();renderTabs();
+}
+function stats(){
+  const ei=st.exam,E=EXAMS[ei],s=score(ei);
+  document.getElementById("sDone").textContent=`${s.n}/${E.length}`;
+  document.getElementById("sRight").textContent=s.r;
+  document.getElementById("sWrong").textContent=s.w;
+  document.getElementById("sPct").textContent=s.n?Math.round(100*s.r/s.n)+"%":"–";
+  document.getElementById("bar").style.width=(100*s.n/E.length)+"%";
+  const box=document.getElementById("done");
+  if(s.n===E.length){
+    box.classList.add("show");
+    const a=ans(ei),by={};
+    E.forEach((q,i)=>{const k=`P${q.p} · D${q.d}: ${q.day}`;by[k]=by[k]||{r:0,n:0};by[k].n++;if(a[i]===q.a)by[k].r++;});
+    document.getElementById("doneTitle").textContent=`Hoàn thành Đề ${ei+1}: ${s.r}/${E.length} câu đúng (${Math.round(100*s.r/E.length)}%)`;
+    const weak=Object.entries(by).filter(([k,v])=>v.r<v.n).sort((x,y)=>(x[1].r/x[1].n)-(y[1].r/y[1].n)).slice(0,3).map(([k])=>k);
+    document.getElementById("doneText").textContent=weak.length?`Nên ôn lại: ${weak.join("; ")}. Bấm "Câu sai" để xem lại giải thích.`:"Không sai câu nào. Thử đề tiếp theo.";
+    document.getElementById("doneTable").innerHTML=`<tr><th>Ngày</th><th>Đúng</th></tr>`+Object.entries(by).map(([k,v])=>`<tr><td>${esc(k)}</td><td>${v.r}/${v.n}</td></tr>`).join("");
+  } else box.classList.remove("show");
+}
+document.addEventListener("click",e=>{
+  const o=e.target.closest(".opt");
+  if(o&&!o.disabled){const i=+o.dataset.q;ans(st.exam)[i]=+o.dataset.o;save();
+    const card=document.getElementById("q"+i);card.outerHTML=qHTML(EXAMS[st.exam][i],i,st.exam);stats();renderTabs();return;}
+  const t=e.target.closest(".tab");
+  if(t){st.exam=+t.dataset.e;save();render();window.scrollTo({top:0});return;}
+  const f=e.target.closest(".chip[data-f]");
+  if(f){st.f=f.dataset.f;save();render();return;}
+  if(e.target.id==="reset"){st.ans[st.exam]={};save();render();return;}
+  if(e.target.id==="theme"){const r=document.documentElement;const cur=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
+    const nx=cur==="dark"?"light":"dark";r.setAttribute("data-theme",nx);try{localStorage.setItem(KEY+"-theme",nx);}catch(_){}}
+});
+try{const th=localStorage.getItem(KEY+"-theme");if(th)document.documentElement.setAttribute("data-theme",th);}catch(e){}
+render();
+</script>
+</body>
+</html>

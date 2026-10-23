@@ -22,6 +22,16 @@ Có bộ lọc *Chưa làm / Câu sai*, điểm theo từng đề và bảng đi
 
 Vị trí đáp án đúng được rải đều A/B/C/D trong mỗi đề, và độ dài phương án đã được cân bằng: chiến thuật "chọn câu dài nhất" hoặc "chọn câu ngắn nhất" đều chỉ đạt khoảng 20–25%.
 
+## Bộ đề trọng tâm (dễ – trung bình): `de-trong-tam.html`
+
+5 đề × 50 câu (30 Phase 1 + 20 Phase 2), mức dễ–trung bình, tập trung vào kiến thức hay ra thi nhất:
+
+- **50 kiến thức trọng tâm** (30 Phase 1, 20 Phase 2), mỗi kiến thức viết thành 3 câu hỏi khác nhau và xuất hiện ở 3 trong 5 đề. Mỗi đề có 30 câu trọng tâm (18 P1 + 12 P2) và 20 câu riêng.
+- Sau khi trả lời, câu trọng tâm hiện dấu ★ cùng danh sách các đề có hỏi lại kiến thức đó. Bộ lọc *Câu trọng tâm đã làm* gom các câu này lại để ôn.
+- Cùng cách hoạt động như bộ đề chính: xáo trộn câu, ẩn tên bài cho tới khi trả lời, giải thích vì sao đúng/sai, cân bằng vị trí và độ dài đáp án.
+
+Nguồn: `source-trong-tam/q/` (p1core, p2core, p1uniq, p2uniq, fix), dựng lại bằng `node source-trong-tam/build/build.js`.
+
 ## Cấu trúc
 
 ```
